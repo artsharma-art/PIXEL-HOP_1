@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: pixel-hop
+    runtime: docker
+    plan: free            # free plan: data is wiped on restart/redeploy (see README)
+    autoDeploy: true
+    healthCheckPath: /api/health
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+    # To keep accounts and scores permanently: set plan to "starter", uncomment
+    # the disk below, and add an env var DB_PATH=/var/data/pixelhop.db
+    # disk:
+    #   name: data
+    #   mountPath: /var/data
+    #   sizeGB: 1
